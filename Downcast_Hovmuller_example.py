@@ -1,14 +1,15 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Apr 17 11:41:04 2025
+Spyder Editor
 
-@author: rc
+This is a temporary script file.
 """
 
 import pandas as pd
 import numpy as np
 import os
+
+#%%
 
 #Directorio de datos
 datadir = "/home/rc/Documents/OneDrive-UdeC/TRABAJOS_INDEPENDIENTES/COPAS_Diego_Narváez/TORTEL_hr/Horarios_Jun2024/Upgraded_processed2025_down/"
@@ -30,6 +31,55 @@ data_list=[
     "CTD Bahia de Tortel 24 Hrs 18 Junio 1030 hrs_upgraded_profile1.csv",
     "CTD Bahia de Tortel 24 Hrs 18 junio 1230 hrs_upgraded_profile0.csv",
 ]
+
+title='17 y 18 de junio 2024'
+#%%
+
+datadir = "/home/rc/Documents/OneDrive-UdeC/TRABAJOS_INDEPENDIENTES/COPAS_Diego_Narváez/TORTEL_hr/Horario_Jul2024_processed2025_down/"
+
+
+
+#Lista de archivos CSV
+data_list=[
+    "CTD Bahia de tortel 17 de Julio de 2024 1200 Hrs_upgraded_profile0.csv",
+    "CTD bahia de tortel 17 de julio de 2024 1400 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de tortel 17 de julio de 2024 1600_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 17 de Julio de 2024 1800 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de tortel 17 de Julio de 2024 2000 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 17 de Julio de 2024 2200 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 18 de julio de 2024 0000 hrs_upgraded_profile0.csv",
+    "CTD Bahia de tortel 18 de julio de 2024 0200 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de tortel 18 de julio de 2024 0400 Hrs_upgraded_profile0.csv",
+    "CTd Bahia de tortel 18 de Julio de 2024 0600 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 18 de julio de 2024 0800 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 18 de Julio de 2024 1000 Hrs_upgraded_profile0.csv",
+    "Ctd Bahia de Tortel 18 de Julio de 2024 1200 Hrs_upgraded_profile0.csv"
+]
+
+title='17 y 18 de julio de 2024'
+#%% 
+
+datadir = "/home/rc/Documents/OneDrive-UdeC/TRABAJOS_INDEPENDIENTES/COPAS_Diego_Narváez/TORTEL_hr/Horarios_Abr2024_processed2025_down"
+
+#Lista de archivos CSV
+data_list=[
+    "CTD Bahia de Tortel 19 de Abril  1200 Hrs de 2024_upgraded_profile0.csv", 
+    "CTD Bahia de Tortel 19 de Abril 1600 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de tortel 19 de Abril 1800 Hrs_upgraded_profile0.csv",
+  #  "CTD Bahia de Tortel 19 de abril 1400 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 19 de Abril 2000 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de tortel 19 de Abril 2200 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de tortel 20 de Abril 0000 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 20 de Abril 0200 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 20 de Abril 0400 Hrs_upgraded_profile0.csv",
+    "CTD BAhia de Tortel 20 de Abril 0600 Hrs_upgraded_profile0.csv",
+    "CTD Bahia de Tortel 20 de Abril 0800 Hrs_upgraded_profile0.csv",
+    "CTD bahia de Tortel 20 de Abril 1000 Hrs_upgraded_profile0.csv",
+    "CTD BAhia de Tortel 20 de abril 1200 Hrs_upgraded_profile0.csv",
+]
+
+title='19 y 20 de abril 2024'
+#%%
 
 #Inicializa DataFrames vacíos
 all_profiles_jnup = pd.DataFrame()
@@ -81,6 +131,7 @@ fig,ax=plt.subplots()
 cont=ax.contourf(T,P,all_profiles_jnup.values)
 ax.set_ylabel('Profundidad [m]')
 ax.set_xlabel('Perfil')
+plt.title(title)
 
 #ax.set_xlim(min(tiempos_jnup), max(tiempos_jnup))
 
@@ -103,4 +154,10 @@ for label in ax.get_xticklabels(which='minor'):
 
 fig.colorbar(cont,ax=ax)
 plt.gca().invert_yaxis()
+plt.savefig(datadir+title+'.png',
+            dpi=300,
+            bbox_inches='tight',     # Ajusta los márgenes automáticamente
+            format='png',            # Especifica el formato
+            transparent=False,       # Fondo transparente o no
+            pad_inches=0.1)         # Padding adicional alrededor de la figura
 plt.show()
